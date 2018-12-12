@@ -1,36 +1,42 @@
+// React
 import React, { Component } from 'react';
+
+// Vendors
+import Grid from '@material-ui/core/Grid';
+
+// Custom
 import Product from './Product';
 
 const products = [
   {
-    name: "manteau",
-    img: "url",
-    price: 20
+    name: "garlic",
+    img: "garlic.jpeg",
+    price: 3
   },
   {
-    name: "bottes",
-    img: "url",
-    price: 30
+    name: "tomato",
+    img: "tomato.jpeg",
+    price: 1
   },
   {
-    name: "tshirt",
-    img: "url",
+    name: "pepper",
+    img: "pepper.jpeg",
+    price: 2
+  },
+  {
+    name: "zucchini",
+    img: "zucchini.jpeg",
+    price: 2
+  },
+  {
+    name: "eggplant",
+    img: "eggplant.jpeg",
+    price: 3
+  },
+  {
+    name: "ratatouille",
+    img: "ratatouille.jpeg",
     price: 10
-  },
-  {
-    name: "pull",
-    img: "url",
-    price: 20
-  },
-  {
-    name: "cravate",
-    img: "url",
-    price: 10
-  },
-  {
-    name: "chaussette",
-    img: "url",
-    price: 5
   }
 ];
 
@@ -47,11 +53,37 @@ class Shop extends Component {
   render () {
     return (
       <div className="Shop">
-      {
-        products.map(
-          product => <Product prod={product}/>
-        )
-      }
+        <Grid
+          container
+        >
+          {
+            products.map(
+              product =>
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  container
+                  direction="row"
+                  justify="space-around"
+                  alignItems="center"
+                  style={{marginBottom: '40px'}}
+                >
+                  <Product prod={product}/>
+                </Grid>
+              
+              /* dans mon component 
+                const prod = {
+                  name: 'manteau',
+                  img: 'garlic',
+                  price: 20
+                }
+                est accessible via props.prod
+              */
+            )
+          }
+        </Grid>
       </div>
     )
   }
