@@ -4,9 +4,6 @@ import React, { Component } from 'react';
 // Vendors
 import Grid from '@material-ui/core/Grid';
 
-// Custom
-import Product from './Product';
-
 const shopProducts = [
   {
     name: "garlic",
@@ -50,6 +47,28 @@ class Shop extends Component {
     fruit est une clé d'objet (object key)
   */
 
+  componentWillMount () {
+    this.state = {
+      products : shopProducts
+    }
+  }
+
+  handle = (index) => {
+    // [{0}, {1}, {2}, {3}, {4}, {5}]
+    // Si index = 3
+    // var newProd = {name : pepper, img: 'jpg', price: 2}
+    // UN objet du tableau, pas de S
+    let newProd = this.state.products[index];
+    if (!newProd.qtt) newProd.qtt = 1;
+    // var newProd = {name : pepper, img: 'jpg', price: 2, qtt: 1}
+    // TOUT le tableau, S
+    const newProds = this.state.products;
+    newProds[index] = newProd;
+    this.setState({products : newProds});
+
+    console.log(index);
+  }
+
   render () {
     return (
       <div className="Shop">
@@ -58,31 +77,30 @@ class Shop extends Component {
         >
           {
             shopProducts.map(
-              oneProduct =>
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  container
-                  direction="row"
-                  justify="space-around"
-                  alignItems="center"
-                  style={{marginBottom: '40px'}}
-                >
-                  <Product prod={oneProduct}/>
-                </Grid>
-              
-              /* dans mon component 
-                const prod = {
-                  name: 'garlic',
-                  img: 'garlic.jpeg',
-                  price: 3
-                }
-                est accessible via props.prod
-              */
-            )
-          }
+              (oneProduct, index) => {
+                return (
+                  <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={4}
+                    container
+                    direction="row"
+                    justify="space-around"
+                    alignItems="center"
+                    style={{marginBottom: '40px'}}
+                  >
+                    <div>
+                      {oneProduct.name}
+                    </div>
+                    <div>
+                      <button onClick={()=>{this.handle(index)}}>ajouter</button>
+                    </div>
+                    <div>
+                      {oneProduct.qtt}
+                    </div>
+                  </Grid>
+            )})}
         </Grid>
       </div>
     )
