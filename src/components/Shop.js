@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 // Custom
 import Product from './Product';
 
-const products = [
+const shopProducts = [
   {
     name: "garlic",
     img: "garlic.jpeg",
@@ -57,8 +57,8 @@ class Shop extends Component {
           container
         >
           {
-            products.map(
-              product =>
+            shopProducts.map(
+              oneProduct =>
                 <Grid
                   item
                   xs={12}
@@ -70,14 +70,14 @@ class Shop extends Component {
                   alignItems="center"
                   style={{marginBottom: '40px'}}
                 >
-                  <Product prod={product}/>
+                  <Product prod={oneProduct}/>
                 </Grid>
               
               /* dans mon component 
                 const prod = {
-                  name: 'manteau',
-                  img: 'garlic',
-                  price: 20
+                  name: 'garlic',
+                  img: 'garlic.jpeg',
+                  price: 3
                 }
                 est accessible via props.prod
               */
