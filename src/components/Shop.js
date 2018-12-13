@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 // Vendors
 import Grid from '@material-ui/core/Grid';
 
+import Cart from './Cart';
+import Product from './Product';
+
 const shopProducts = [
   {
     name: "garlic",
@@ -47,31 +50,32 @@ class Shop extends Component {
     fruit est une clé d'objet (object key)
   */
 
+
+  /* Ce CODE ne sert plus a rien
+   Car on a separe Product de Shop*/
+  handle = (index) => {
+    const newProducts = this.state.products;
+    const newProduct = newProducts[index];
+    if (!newProduct.qtt) {
+      newProduct.qtt = 1;
+    }
+    else {
+      newProduct.qtt++;
+    }
+    newProducts[index] = newProduct;
+    this.setState({products : newProducts});
+  }
+
   componentWillMount () {
     this.state = {
       products : shopProducts
     }
   }
 
-  handle = (index) => {
-    // [{0}, {1}, {2}, {3}, {4}, {5}]
-    // Si index = 3
-    // var newProd = {name : pepper, img: 'jpg', price: 2}
-    // UN objet du tableau, pas de S
-    let newProd = this.state.products[index];
-    if (!newProd.qtt) newProd.qtt = 1;
-    // var newProd = {name : pepper, img: 'jpg', price: 2, qtt: 1}
-    // TOUT le tableau, S
-    const newProds = this.state.products;
-    newProds[index] = newProd;
-    this.setState({products : newProds});
-
-    console.log(index);
-  }
-
   render () {
     return (
       <div className="Shop">
+        <Cart/>
         <Grid
           container
         >
@@ -90,15 +94,8 @@ class Shop extends Component {
                     alignItems="center"
                     style={{marginBottom: '40px'}}
                   >
-                    <div>
-                      {oneProduct.name}
-                    </div>
-                    <div>
-                      <button onClick={()=>{this.handle(index)}}>ajouter</button>
-                    </div>
-                    <div>
-                      {oneProduct.qtt}
-                    </div>
+                    <Product prod={oneProduct} index={index} handle={this.handle}/>
+
                   </Grid>
             )})}
         </Grid>
