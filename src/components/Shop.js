@@ -53,15 +53,23 @@ class Shop extends Component {
 
   /* Ce CODE ne sert plus a rien
    Car on a separe Product de Shop*/
-  handle = (index) => {
+  handle = (index, operation) => {
     const newProducts = this.state.products;
     const newProduct = newProducts[index];
-    if (!newProduct.qtt) {
-      newProduct.qtt = 1;
+    // operation 1 || -1
+    if (operation === 1) {
+      if (!newProduct.qtt) {
+        newProduct.qtt = 1;
+      }
+      else {
+        newProduct.qtt++;
+      }
     }
-    else {
-      newProduct.qtt++;
+    else if (newProduct.qtt && newProduct.qtt > 0) {
+      newProduct.qtt--;
     }
+
+    // newProduct = condition? valueA : valueB;
     newProducts[index] = newProduct;
     this.setState({products : newProducts});
   }

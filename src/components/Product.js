@@ -26,8 +26,8 @@ class Product extends Component {
     return (
       <div>
         <div>{this.props.prod.name}</div>
-        <button onClick={()=>{this.props.handle(this.props.index)}}>ajouter</button>
-        <button onClick={()=>{this.props.handle(this.props.index)}}>supprimer</button>
+        <button onClick={()=>{this.props.handle(this.props.index, 1)}}>ajouter</button>
+        <button onClick={()=>{this.props.handle(this.props.index, -1)}}>supprimer</button>
         <div>{this.props.prod.qtt}</div>
       </div>
     )
