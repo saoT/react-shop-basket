@@ -56,18 +56,8 @@ class Shop extends Component {
   handle = (index, operation) => {
     const newProducts = this.state.products;
     const newProduct = newProducts[index];
-    // operation 1 || -1
-    if (operation === 1) {
-      if (!newProduct.qtt) {
-        newProduct.qtt = 1;
-      }
-      else {
-        newProduct.qtt++;
-      }
-    }
-    else if (newProduct.qtt && newProduct.qtt > 0) {
-      newProduct.qtt--;
-    }
+
+    newProduct.qtt = Math.max( (newProduct.qtt || 0 ) + operation, 0);
 
     // newProduct = condition? valueA : valueB;
     newProducts[index] = newProduct;
