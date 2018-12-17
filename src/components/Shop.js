@@ -1,5 +1,6 @@
 // React
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 // Vendors
 import Grid from '@material-ui/core/Grid';
@@ -50,7 +51,6 @@ class Shop extends Component {
     fruit est une clé d'objet (object key)
   */
 
-
   /* Ce CODE ne sert plus a rien
    Car on a separe Product de Shop*/
   handle = (index, operation) => {
@@ -73,7 +73,7 @@ class Shop extends Component {
   render () {
     return (
       <div className="Shop">
-        <Cart/>
+        <Cart products={this.state.products}/>
         <Grid
           container
         >

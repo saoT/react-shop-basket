@@ -3,18 +3,32 @@ import React, {Component} from 'react';
 class Cart extends Component {
 
   render () {
+
+    let total = 0;
+
     return (
-      <div className="Cart">
+      <div className="Cart" style={{borderBottom: '10px solid green'}}>
         <h3>Mon panier</h3>
-
         <ul>
-          <li>
-            Un article à acheter
-          </li>
-        </ul>
 
+        {
+          this.props.products.map( (prod) => {
+
+            if (prod.qtt > 0) {
+              total += prod.qtt*prod.price;
+              return (
+                <li>
+                  {prod.name} : {prod.qtt} | sous-total : {prod.qtt*prod.price}$
+                </li>
+              )
+            }
+          })
+        }
+
+
+        </ul>
         <div>
-          Total : 0
+          Total : {total}$
         </div>
       </div>
     );
